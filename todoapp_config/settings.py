@@ -117,4 +117,5 @@ STATICFILES_DIRS =[
 ] 
 
 
-LOGIN_REDIRECT_URL = 'kanban:home';
+LOGIN_REDIRECT_URL = 'front:home'
+LOGOUT_REDIRECT_URL = 'front:index'
