@@ -119,3 +119,5 @@ STATICFILES_DIRS =[
 
 LOGIN_REDIRECT_URL = 'front:home'
 LOGOUT_REDIRECT_URL = 'front:index'
+
+LOGIN_URL = "login"
