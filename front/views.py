@@ -2,9 +2,10 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.views.generic import DetailView
+from django.shortcuts import render, redirect, resolve_url
+from django.views.generic import DetailView, UpdateView 
 
+from .forms import UserForm
 
 def index(request):
     return render(request, "front/index.html")
@@ -33,3 +34,12 @@ def signup(request):
 class UserDetailView(DetailView):
     model = User
     template_name = "front/users/detail.html"
+
+
+class UserUpdateView(UpdateView):
+    model = User
+    template_name = 'front/users/update.html'
+    form_class = UserForm
+
+    def get_success_url(self):
+        return resolve_url('front:users_detai',pk=self.kwargs['pk'])
