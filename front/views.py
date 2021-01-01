@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, resolve_url
 from django.views.generic import DetailView, UpdateView 
 
 from .forms import UserForm
+from .mixins import OnlyYouMixin
 
 def index(request):
     return render(request, "front/index.html")
@@ -33,13 +34,13 @@ def signup(request):
 
 class UserDetailView(DetailView):
     model = User
-    template_name = "front/users/detail.html"
+    template_name = 'front/users/detail.html'
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(OnlyYouMixin, UpdateView):
     model = User
     template_name = 'front/users/update.html'
     form_class = UserForm
 
     def get_success_url(self):
-        return resolve_url('front:users_detai',pk=self.kwargs['pk'])
+        return resolve_url('front:users_detail', pk=self.kwargs['pk'])
