@@ -9,5 +9,7 @@
     <dt class="col-sm-3">ユーザー名</dt>
     <dd class="col-sm-9">{{ list.user.username }}</dd>
   </dl>
+  <a class="btn btn-primary" href="{% url 'front:lists_update' list.pk  %}" role="button">編集</a>
+  <a class="btn btn-danger" href="{% url 'front:lists_delete' list.pk  %}" role="button">削除</a>
 </div>
 {% endblock %}
